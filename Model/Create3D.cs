@@ -44,13 +44,16 @@ namespace CreateFrame.Model
                 AssemblyComponentDefinition? oFaceDef = (ThisApplication.ActiveDocument as AssemblyDocument)?.ComponentDefinition;
 
 
+                //Накладываем зависимости:
 
-
-
-                var oConstr = oFaceDef?.Constraints.AddMateConstraint(oPart1_1?.SurfaceBodies[1].Faces[3], oPart1_2?.SurfaceBodies[1].Faces[3], -length / 10, InferredTypeEnum.kNoInference, InferredTypeEnum.kNoInference);
-
-               // oConstr?.ConvertToFlushConstraint(oPart1_1?.SurfaceBodies[1].Faces[3], oPart1_2?.SurfaceBodies[1].Faces[3], 0);
-
+                var oConstr1 = oFaceDef?.Constraints.AddMateConstraint(oPart1_1?.SurfaceBodies[1].Faces[3], oPart1_2?.SurfaceBodies[1].Faces[3], -height / 10, InferredTypeEnum.kNoInference, InferredTypeEnum.kNoInference);
+                var oConstr2 = oFaceDef?.Constraints.AddMateConstraint(oPart1_3?.SurfaceBodies[1].Faces[3], oPart1_4?.SurfaceBodies[1].Faces[3], -height / 10, InferredTypeEnum.kNoInference, InferredTypeEnum.kNoInference);
+                var oConstr3 = oFaceDef?.Constraints.AddMateConstraint(oPart1_1?.SurfaceBodies[1].Faces[4], oPart1_3?.SurfaceBodies[1].Faces[4], -length / 10, InferredTypeEnum.kNoInference, InferredTypeEnum.kNoInference);
+                var oConstr4 = oFaceDef?.Constraints.AddMateConstraint(oPart1_2?.SurfaceBodies[1].Faces[4], oPart1_4?.SurfaceBodies[1].Faces[4], -length / 10, InferredTypeEnum.kNoInference, InferredTypeEnum.kNoInference);
+                var ofConstr1 = oFaceDef?.Constraints.AddMateConstraint(oPart1_1?.SurfaceBodies[1].Faces[4], oPart1_2?.SurfaceBodies[1].Faces[4], 0, InferredTypeEnum.kNoInference, InferredTypeEnum.kNoInference);
+                ofConstr1?.ConvertToFlushConstraint(oPart1_1?.SurfaceBodies[1].Faces[4], oPart1_2?.SurfaceBodies[1].Faces[4], 0);
+                var ofConstr2 = oFaceDef?.Constraints.AddMateConstraint(oPart1_1?.SurfaceBodies[1].Faces[3], oPart1_4?.SurfaceBodies[1].Faces[3], 0, InferredTypeEnum.kNoInference, InferredTypeEnum.kNoInference);
+                ofConstr2?.ConvertToFlushConstraint(oPart1_1?.SurfaceBodies[1].Faces[3], oPart1_4?.SurfaceBodies[1].Faces[3], 0);
 
             }
         }
