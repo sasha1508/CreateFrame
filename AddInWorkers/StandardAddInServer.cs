@@ -80,24 +80,15 @@ namespace CoreAddIn
             //После нажатия книпки "Создать раму":
             private void BtnDefinition_OnExecute(NameValueMap Context)
             {
-                Form_EnterSize form_EnterSize = new();
-                form_EnterSize.ShowDialog();
-
-                //// Link button clicks to their respective commands.
-                //switch (BtnDefinition?.InternalName)
-                //{
-                //    case "dw_NewWithPathFromPart":
-
-                //        if (Globals.InvApp != null)
-                //            System.Windows.MessageBox.Show($"{ Globals.InvApp.ActiveDocument.DisplayName } is the part name (test:09)");
-                //        else
-                //            throw new NullReferenceException($"{ nameof(Globals.InvApp) } was null. We somehow do not have a valid Inventor Application reference");
-                                               
-                //        return;
-
-                //    default:
-                //        return;
-                //}
+                if ((Globals.InvApp.ActiveDocument as AssemblyDocument).ComponentDefinition.Occurrences.Count > 0)
+                {
+                    MessageBox.Show("Это не пустая сборка.\nУдалите все компоненты из этой сборки,\nили создайте новый файл.", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else 
+                {
+                    Form_EnterSize form_EnterSize = new();
+                    form_EnterSize.ShowDialog();
+                } 
             }
         }
 

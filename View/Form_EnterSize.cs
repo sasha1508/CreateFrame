@@ -28,11 +28,18 @@ namespace CreateFrame.AddInWorkers
         {
             
             try
-            {  
-                //Создаём пространственную раму:
-                Create3D.CreateFrame(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text), Convert.ToDouble(textBox3.Text));
-                
-                Close();
+            {
+                if (Convert.ToDouble(textBox1.Text) < 160 || Convert.ToDouble(textBox2.Text) < 160 || Convert.ToDouble(textBox3.Text) < 160)
+                {
+                    MessageBox.Show("Габаритные размеры не могут быть меньше 160 мм", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    //Создаём пространственную раму:
+                    Create3D.CreateFrame(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text), Convert.ToDouble(textBox3.Text));
+
+                    Close();
+                }
             }
             catch (Exception ex) 
             {
